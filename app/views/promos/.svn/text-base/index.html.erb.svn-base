@@ -1,0 +1,54 @@
+<% content_for(:title) do%>
+	Promo Media: MuVi2 Database
+<% end %>
+
+<fieldset>
+	<legend>Promo Media</legend>
+		<% form_tag promos_path, :method =>'get' do %>
+			<p>
+				<%= text_field_tag :search, params[:search], :size => 45 %>
+				<%= submit_tag "Search", :name => nil %>
+			</p>
+		<% end %>
+		<% if params[:details] == 'true'%>
+			<%= link_to 'Hide details', promos_path(:search => params[:search], :details => 'false')%>
+		<% else %>
+			<%= link_to 'Show details and images', promos_path(:search => params[:search], :details => 'true')%>
+		<% end %>
+</fieldset>
+
+<br/>
+<%= link_to 'New promo', new_promo_path %> | <%= link_to 'Promo Media not ready' , media_files_unready_path %> |
+<%= link_to 'Promos past last use date', promo_past_last_use_path %><br/>
+
+<%= will_paginate @promos %>
+
+<% @promos.each do |promo| %>
+	<table width = '90%'>
+	  <tr>
+	    <td width = '200'><b><%=link_to(h(promo.name), promo) %></b></td>
+	    <td width = '200'><% if promo.title %>
+						<% if promo.name != promo.title.english %>
+							<i>Programme Title: <%=h promo.title.english unless promo.title.nil? %></i>
+						<% end %>
+					<% end %>
+			</td>
+	    <td width = '50'><%= link_to 'Details', promo %></td>
+	    <td width = '50'><%= link_to 'Edit', edit_promo_path(promo) %></td>
+	    <td width = '50'><%= link_to 'Destroy', promo, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+		<% if params[:details] == 'true'%>
+			<tr>
+				<td colspan = '2'><%=h promo.description %></td>
+			</tr>
+		<% end %>
+	</table>
+
+	<% if params[:details] == 'true'%>
+		<%= render :partial => 'media', :locals	=> {:promo => promo, :heading => false, 
+			:details => false, :source => 'promo index'} %>
+	<% end %>
+<% end %>
+<br/>
+
+<%= will_paginate @promos %>

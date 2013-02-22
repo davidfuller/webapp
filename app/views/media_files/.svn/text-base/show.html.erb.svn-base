@@ -1,0 +1,69 @@
+<%= javascript_include_tag 'qtobject.js' %>
+
+<h1>Media File</h1>
+<b><%=h @media_file.name %></b><br/>
+
+<% if params[:upload] == 'true' %>
+	<% form_tag({:action => :upload_file, :id => @media_file, :source => params[:source]}, :multipart => true) do %>
+		<p>
+			<b>Media File:</b><br/>
+		<%= file_field_tag 'file', {:size => 60} %><br/>
+		<%= submit_tag("Upload") %>
+		</p>
+	<% end %>
+<% end %>
+
+<% if @media_file.media_type %>
+	<% if @media_file.media_type.name == 'Promo Clip'%>
+		<% if @media_file.quicktime_exist? %>
+			Click image to view video<br/>
+			<%= quicktime_tag(@media_file.clip_quicktime_url, 'quicktime_proxy', 640, 360 , 
+			{:placeholder => @media_file.clip_jpeg_url, :autoplay => false } ) %><br/>
+			<%= link_to 'Right click this link to save file to play in standalone player', @media_file.clip_quicktime_url %>	
+		<% else %>
+				<% if @media_file.jpeg_exist? %>
+					<%= image_tag (@media_file.clip_jpeg_url, :size => "640 x 360") %>
+				<% end %>
+		<% end %>
+	<% else %>
+		<% if @media_file.jpeg_exist? %>
+			<%= image_tag (@media_file.still_jpeg_url, :size => "560 x 360") %>
+		<% end %>
+	<% end %>		
+<% end%>
+
+<p>
+  <b>Filename:</b><br/>
+  <%=h @media_file.filename %>
+</p>
+
+<p>
+  <b>Media folder:</b><br/>
+  <%=h @media_file.media_folder.folder unless @media_file.media_folder.nil? %>
+</p>
+
+<p>
+  <b>First use:</b><br/>
+  <%=h @media_file.first_use.to_s(:broadcast_datetime) %>
+</p>
+
+<p>
+  <b>Last use:</b><br/>
+  <%=h @media_file.last_use.to_s(:broadcast_datetime) %>
+</p>
+<p>
+  <b>Media Type:</b><br/>
+  <%=h @media_file.media_type.name unless @media_file.media_type.nil? %>
+</p>
+
+<p>
+  <b>Status:</b><br/>
+  <%=h @media_file.status.message unless @media_file.status.nil? %>
+</p>
+
+<%= link_to 'Edit', edit_media_file_path(@media_file) %> |
+<% if params[:source] == 'promo index'%>
+	<%= link_to 'Back', promos_path %>
+<% else %>
+	<%= link_to 'Back', :back %>
+<% end %>

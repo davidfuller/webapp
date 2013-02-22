@@ -1,0 +1,19 @@
+<h1>New house number</h1>
+
+<% form_for(@house) do |f| %>
+  <%= f.error_messages %>
+
+	<%= render :partial => 'entry', :locals	=> {:f => f, :h => @house} 	%>
+	
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<% if @house.source == 'comparison' %>
+	<%= link_to 'Return to comparison', comparison_path_with_filter_and_filename %>
+<% elsif @house.source == 'schedule comparison' %>
+	<%= link_to 'Return to comparison', schedule_comparison_path_with_filter_and_filename %>
+<% else %>  
+	<%= link_to 'Back', houses_path %>
+<% end %>

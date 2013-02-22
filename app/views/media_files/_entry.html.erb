@@ -1,0 +1,31 @@
+<%= calendar_date_select_includes "custom", :locale=>'uk' %>
+<%= f.hidden_field :source %>
+<%= f.hidden_field :promo_id %>
+<p>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :filename %><br />
+  <%= f.text_field :filename %>
+</p>
+<p>
+  <%= f.label :media_folder_id %><br />
+  <%= f.collection_select (:media_folder_id, @folders, :id, :name)   %>
+</p>
+<p>
+  <%= f.label :first_use %><br />
+	<%= f.calendar_date_select :first_use, {:month_year => :label, :minute_interval => 1} %>
+</p>
+<p>
+  <%= f.label :last_use %><br />
+	<%= f.calendar_date_select :last_use,  {:month_year => :label, :minute_interval => 1} %>
+</p>
+<p>
+  <%= f.label :media_type_id %><br />
+  <%= f.collection_select (:media_type_id, @media_types, :id, :name, :prompt => 'Select a type')   %>
+</p>
+<p>
+  <%= f.label :status_id %><br />
+  <%= f.collection_select (:status_id, @statuses, :id, :message, :prompt => 'Select status')   %>
+</p>

@@ -1,0 +1,53 @@
+<fieldset>
+	<legend>House Numbers</legend>
+		<% form_tag houses_path, :method =>'get' do %>
+			<p>
+				<%= text_field_tag :search, params[:search], :size => 45 %>
+				<%= submit_tag "Search", :name => nil %>
+			</p>	
+		<% end %>
+</fieldset>
+
+<p class = 'link_button'>
+	<%= link_to 'New house number', new_house_path %>
+</p>
+
+<%= will_paginate @houses %>
+
+<table>
+  <tr>
+		<th>English Title</th>
+		<th>House Number</th>
+		<th>Series Number</th>
+		<th>EOP</th>
+  </tr>
+
+<% @houses.each do |house| %>
+
+  <tr>
+		<td>
+			<% if house.title %>
+				<%= h house.title.english %>
+			<% else %>
+				<%= "No title" %>
+			<% end %>
+		</td>
+		<td><%=h house.house_number %></td>
+		<td><%=h house.series_number.series_number if house.series_number%>	
+		<td>
+			<% if house.title %>
+				<%= h house.title.eop_display %>
+			<% else %>
+				<%= "No EOP" %>
+			<% end %>
+		</td>
+		
+    <td><%= link_to 'Edit', edit_house_path(house) %></td>
+    <td><%= link_to 'Delete', house, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= will_paginate @houses %>
