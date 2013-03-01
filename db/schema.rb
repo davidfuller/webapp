@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306171658) do
+ActiveRecord::Schema.define(:version => 20130228140034) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -96,6 +96,14 @@ ActiveRecord::Schema.define(:version => 20120306171658) do
     t.integer  "tx_channel_id"
     t.integer  "press_id"
     t.integer  "title_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dynamic_specials", :force => true do |t|
+    t.string   "name"
+    t.integer  "channel_id"
+    t.integer  "page"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -309,6 +317,14 @@ ActiveRecord::Schema.define(:version => 20120306171658) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "special_fields", :force => true do |t|
+    t.integer  "number"
+    t.string   "description"
+    t.string   "default_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "statuses", :force => true do |t|
     t.integer  "value"

@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :dynamic_specials
+
+  map.resources :special_fields
+
   map.resources :cross_channel_priorities
 
   map.resources :aspects

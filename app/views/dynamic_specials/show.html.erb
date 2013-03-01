@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @dynamic_special.name %>
+</p>
+
+<p>
+  <b>Channel:</b>
+  <%=h @dynamic_special.channel_id %>
+</p>
+
+<p>
+  <b>Page:</b>
+  <%=h @dynamic_special.page %>
+</p>
+
+
+<%= link_to 'Edit', edit_dynamic_special_path(@dynamic_special) %> |
+<%= link_to 'Back', dynamic_specials_path %>

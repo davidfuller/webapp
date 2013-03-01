@@ -1,0 +1,24 @@
+<h1>Editing dynamic_special</h1>
+
+<% form_for(@dynamic_special) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :channel_id %><br />
+    <%= f.text_field :channel_id %>
+  </p>
+  <p>
+    <%= f.label :page %><br />
+    <%= f.text_field :page %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @dynamic_special %> |
+<%= link_to 'Back', dynamic_specials_path %>
