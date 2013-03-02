@@ -1,4 +1,4 @@
-<h1>Editing dynamic_special</h1>
+<h1>Editing Dynamic Special</h1>
 
 <% form_for(@dynamic_special) do |f| %>
   <%= f.error_messages %>
@@ -9,7 +9,7 @@
   </p>
   <p>
     <%= f.label :channel_id %><br />
-    <%= f.text_field :channel_id %>
+    <%= f.collection_select (:channel_id, @channels, :id, :name)   %>
   </p>
   <p>
     <%= f.label :page %><br />

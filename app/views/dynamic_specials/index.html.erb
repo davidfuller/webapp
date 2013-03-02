@@ -1,4 +1,12 @@
-<h1>Listing dynamic_specials</h1>
+<h1>Dynamic Specials</h1>
+
+<%- session[:special_channel] = params[:channel] %>
+
+<% form_tag dynamic_specials_path, :method =>'get' do %>
+		Channel <%= select_tag :channel, options_for_select(@channel_display.insert(0,"All"), 
+														params[:channel]),{:onchange => 'this.form.submit()'}%><br/>
+<% end %>
+
 
 <table>
   <tr>
@@ -21,4 +29,4 @@
 
 <br />
 
-<%= link_to 'New dynamic_special', new_dynamic_special_path %>
+<%= link_to 'New Dynamic Special', new_dynamic_special_path %>
