@@ -2,8 +2,9 @@ class DynamicSpecialsController < ApplicationController
   # GET /dynamic_specials
   # GET /dynamic_specials.xml
   def index
-    @dynamic_specials = DynamicSpecial.all
-
+    @dynamic_specials = DynamicSpecial.search(params[:channel])
+    @channel_display = Channel.display
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @dynamic_specials }
@@ -25,6 +26,7 @@ class DynamicSpecialsController < ApplicationController
   # GET /dynamic_specials/new.xml
   def new
     @dynamic_special = DynamicSpecial.new
+    @channels = Channel.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,17 +37,19 @@ class DynamicSpecialsController < ApplicationController
   # GET /dynamic_specials/1/edit
   def edit
     @dynamic_special = DynamicSpecial.find(params[:id])
+    @channels = Channel.all
   end
 
   # POST /dynamic_specials
   # POST /dynamic_specials.xml
   def create
     @dynamic_special = DynamicSpecial.new(params[:dynamic_special])
+    @channels = Channel.all
 
     respond_to do |format|
       if @dynamic_special.save
-        flash[:notice] = 'DynamicSpecial was successfully created.'
-        format.html { redirect_to(@dynamic_special) }
+        flash[:notice] = 'Dynamic Special Page was successfully created.'
+        format.html { redirect_to dynamic_specials_path(:channel => session[:special_channel]) }
         format.xml  { render :xml => @dynamic_special, :status => :created, :location => @dynamic_special }
       else
         format.html { render :action => "new" }
@@ -58,11 +62,12 @@ class DynamicSpecialsController < ApplicationController
   # PUT /dynamic_specials/1.xml
   def update
     @dynamic_special = DynamicSpecial.find(params[:id])
+    @channels = Channel.all    
 
     respond_to do |format|
       if @dynamic_special.update_attributes(params[:dynamic_special])
         flash[:notice] = 'DynamicSpecial was successfully updated.'
-        format.html { redirect_to(@dynamic_special) }
+        format.html { redirect_to dynamic_specials_path(:channel => session[:special_channel]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -75,10 +80,11 @@ class DynamicSpecialsController < ApplicationController
   # DELETE /dynamic_specials/1.xml
   def destroy
     @dynamic_special = DynamicSpecial.find(params[:id])
+    channel = @dynamic_special.channel_name
     @dynamic_special.destroy
 
     respond_to do |format|
-      format.html { redirect_to(dynamic_specials_url) }
+      format.html { redirect_to(dynamic_specials_url(:channel => session[:special_channel])) }
       format.xml  { head :ok }
     end
   end
