@@ -1,24 +1,17 @@
-<h1>Editing special_field</h1>
+<h1>Editing Special Field</h1>
+
+<%= render :partial => 'dynamic_special' %>
 
 <% form_for(@special_field) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :default_text %><br />
-    <%= f.text_field :default_text %>
-  </p>
+  <%= render :partial => 'entry', :locals	=> {:f => f} 	%>
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @special_field %> |
-<%= link_to 'Back', special_fields_path %>
+<% if @special_field.source == 'dynamic' %>
+  <%= link_to 'Back', dynamic_special_path(@special_field.dynamic_special_id) %>
+<% else %>
+  <%= link_to 'Back', special_fields_path %>
+<% end %>

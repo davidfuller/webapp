@@ -1,18 +1,19 @@
-<p>
-  <b>Name:</b>
-  <%=h @dynamic_special.name %>
-</p>
+<h1>Dynamic Special</h1>
+<table>
+  <tr><td class='dynamic_special_bold'>Name</td><td><%=h @dynamic_special.name %></td></tr>
+  <tr><td class='dynamic_special_bold'>Channel</td><td><%=h @dynamic_special.channel_name %></td></tr>
+  <tr><td class='dynamic_special_bold'>Sponsor</td><td><%=h @dynamic_special.sponsor %></td></tr>
+  <tr><td class='dynamic_special_bold'>Sponsor Reference</td><td><%=h @dynamic_special.sponsor_reference %></td></tr>
+  <tr><td class='dynamic_special_bold'>Page 16:9</td><td><%=h @dynamic_special.page %></td><td class='dynamic_special_bold'>Page 4:3</td><td><%=h @dynamic_special.page_43 %></td></tr>
+  <tr><td class='dynamic_special_bold'>Clear Down Page 16:9</td><td><%=h @dynamic_special.clear_down_page_number %></td><td class='dynamic_special_bold'>Clear Down Page 4:3</td><td><%=h @dynamic_special.clear_down_page_number_43 %></td></tr>
+  <tr><td class='dynamic_special_bold'>Duration (s)</td><td><%=h @dynamic_special.clear_down_duration %></td></tr>
+</table>
+<br />
+<%= render :partial => 'fields', :locals	=> {:dynamic_special => @dynamic_special} %>
+ 
+<%= link_to 'Add field', new_special_field_path(:source => 'dynamic', 
+                                                :dynamic_special_id => @dynamic_special, 
+                                                :number => @dynamic_special.next_field_number) %> | 
 
-<p>
-  <b>Channel:</b>
-  <%=h @dynamic_special.channel_name %>
-</p>
-
-<p>
-  <b>Page:</b>
-  <%=h @dynamic_special.page %>
-</p>
-
-
-<%= link_to 'Edit', edit_dynamic_special_path(@dynamic_special) %> |
 <%= link_to 'Back', dynamic_specials_path %>
+

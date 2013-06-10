@@ -1,20 +1,9 @@
-<h1>New dynamic_special</h1>
+<h1>New Dynamic Special</h1>
 
 <% form_for(@dynamic_special) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :channel_id %><br />
-	  <%= f.collection_select (:channel_id, @channels, :id, :name)   %>
-  </p>
-  <p>
-    <%= f.label :page %><br />
-    <%= f.text_field :page %>
-  </p>
+  <%= render :partial => 'entry', :locals => {:f => f} %>
   <p>
     <%= f.submit 'Create' %>
   </p>

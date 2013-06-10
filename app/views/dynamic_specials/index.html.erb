@@ -12,19 +12,32 @@
   <tr>
     <th>Name</th>
     <th>Channel</th>
-    <th>Page</th>
+    <th>Sponsor</th>
+    <th>Page 16:9</th>
+    <th>Clear Down 16:9</th>
+    <th>Page 4:3</th>
+    <th>Clear Down 4:3</th>
+    <th>Duration</th>
+    <th>No. Fields</th>
   </tr>
 
 <% @dynamic_specials.each do |dynamic_special| %>
   <tr>
     <td><%=h dynamic_special.name %></td>
-    <td><%=h dynamic_special.channel_id %></td>
+    <td><%=h dynamic_special.channel_name %></td>
+    <td><%=h dynamic_special.sponsor %></td>
     <td><%=h dynamic_special.page %></td>
+    <td><%=h dynamic_special.clear_down_page_number %></td>
+    <td><%=h dynamic_special.page_43 %></td>
+    <td><%=h dynamic_special.clear_down_page_number_43 %></td>
+    <td><%=h dynamic_special.clear_down_duration %></td>    
+    <td><%=h dynamic_special.special_fields.count %></td>
     <td><%= link_to 'Show', dynamic_special %></td>
     <td><%= link_to 'Edit', edit_dynamic_special_path(dynamic_special) %></td>
     <td><%= link_to 'Destroy', dynamic_special, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+
 </table>
 
 <br />

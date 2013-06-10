@@ -10,6 +10,7 @@ class Channel < ActiveRecord::Base
   has_many :playlist_filenames
   has_many :comparisons
   has_many :cross_channel_priorities
+  has_many :dynamic_specials
   
   validates_presence_of :name, :language_id
   default_scope :order => :name

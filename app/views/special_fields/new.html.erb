@@ -1,20 +1,10 @@
-<h1>New special_field</h1>
+<h1>New Special Field</h1>
+<%= render :partial => 'dynamic_special' %>
 
 <% form_for(@special_field) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :default_text %><br />
-    <%= f.text_field :default_text %>
-  </p>
+  <%= render :partial => 'entry', :locals	=> {:f => f} 	%>
   <p>
     <%= f.submit 'Create' %>
   </p>

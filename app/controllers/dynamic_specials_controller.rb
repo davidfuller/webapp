@@ -7,7 +7,7 @@ class DynamicSpecialsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @dynamic_specials }
+      format.xml  # index.xml.builder
     end
   end
 
@@ -66,7 +66,7 @@ class DynamicSpecialsController < ApplicationController
 
     respond_to do |format|
       if @dynamic_special.update_attributes(params[:dynamic_special])
-        flash[:notice] = 'DynamicSpecial was successfully updated.'
+        flash[:notice] = 'Dynamic Special was successfully updated.'
         format.html { redirect_to dynamic_specials_path(:channel => session[:special_channel]) }
         format.xml  { head :ok }
       else

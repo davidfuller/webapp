@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228140034) do
+ActiveRecord::Schema.define(:version => 20130507162338) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -106,6 +106,12 @@ ActiveRecord::Schema.define(:version => 20130228140034) do
     t.integer  "page"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "clear_down_page_number"
+    t.integer  "clear_down_duration"
+    t.integer  "page_43"
+    t.integer  "clear_down_page_number_43"
+    t.string   "sponsor"
+    t.string   "sponsor_reference"
   end
 
   create_table "houses", :force => true do |t|
@@ -324,6 +330,7 @@ ActiveRecord::Schema.define(:version => 20130228140034) do
     t.string   "default_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "dynamic_special_id"
   end
 
   create_table "statuses", :force => true do |t|

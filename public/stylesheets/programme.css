@@ -158,13 +158,18 @@
 	border-collapse: collapse;
 }
 
-
 #store td, th {
 	padding-right: 1em;
 	font-size: 10px;
 	text-align: left;
 	vertical-align: top;
 }
+
+#store .dynamic_special_bold {
+	color: #00367C;
+	font-weight: bold;
+}
+
 
 #store td .day_heading {
 	color: #00367C;

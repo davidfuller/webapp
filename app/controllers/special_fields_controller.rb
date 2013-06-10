@@ -25,6 +25,9 @@ class SpecialFieldsController < ApplicationController
   # GET /special_fields/new.xml
   def new
     @special_field = SpecialField.new
+    @special_field.dynamic_special_id = params[:dynamic_special_id]
+    @special_field.source = params[:source]
+    @special_field.number = params[:number]||1
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +38,7 @@ class SpecialFieldsController < ApplicationController
   # GET /special_fields/1/edit
   def edit
     @special_field = SpecialField.find(params[:id])
+    @special_field.source = params[:source]
   end
 
   # POST /special_fields
@@ -44,9 +48,14 @@ class SpecialFieldsController < ApplicationController
 
     respond_to do |format|
       if @special_field.save
-        flash[:notice] = 'SpecialField was successfully created.'
-        format.html { redirect_to(@special_field) }
-        format.xml  { render :xml => @special_field, :status => :created, :location => @special_field }
+        flash[:notice] = 'Special Field was successfully created.'
+        if @special_field.source == 'dynamic'
+          format.html { redirect_to(dynamic_special_path(@special_field.dynamic_special_id)) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(@special_field) }
+          format.xml  { render :xml => @special_field, :status => :created, :location => @special_field }
+         end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @special_field.errors, :status => :unprocessable_entity }
@@ -61,9 +70,14 @@ class SpecialFieldsController < ApplicationController
 
     respond_to do |format|
       if @special_field.update_attributes(params[:special_field])
-        flash[:notice] = 'SpecialField was successfully updated.'
-        format.html { redirect_to(@special_field) }
-        format.xml  { head :ok }
+        flash[:notice] = 'Special Field was successfully updated.'
+        if @special_field.source == 'dynamic'
+          format.html { redirect_to(dynamic_special_path(@special_field.dynamic_special_id)) }
+          format.xml  { head :ok }
+        else
+          format.html { redirect_to(@special_field) }
+          format.xml  { head :ok }
+        end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @special_field.errors, :status => :unprocessable_entity }
@@ -78,8 +92,13 @@ class SpecialFieldsController < ApplicationController
     @special_field.destroy
 
     respond_to do |format|
-      format.html { redirect_to(special_fields_url) }
-      format.xml  { head :ok }
+      if params[:source] == 'dynamic'
+        format.html { redirect_to(dynamic_special_path(@special_field.dynamic_special_id)) }
+        format.xml  { head :ok }
+      else
+        format.html { redirect_to(special_fields_url) }
+        format.xml  { head :ok }
+      end
     end
   end
 end
