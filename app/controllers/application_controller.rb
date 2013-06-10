@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
 #  CHARSET_FORMAT = "ISO-8859-1"
    CHARSET_FORMAT = "WINDOWS-1252"
 #    CHARSET_FORMAT = "UTF-8"
-    
+ 
+# Here is some extra text   
   
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
