@@ -2,7 +2,7 @@
 
 development:
     adapter: mysql
-    database: viasat
+    database: sky
     username: root
     password: root
     host: localhost
