@@ -2,6 +2,7 @@ class Promo < ActiveRecord::Base
     
     has_and_belongs_to_many :media_files
     belongs_to :title
+    belongs_to :promo_type
     
     default_scope :order => :name
 

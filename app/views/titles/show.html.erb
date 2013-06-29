@@ -1,31 +1,11 @@
 <p>
-  <b>English:</b>
-  <%=h @title.english %>
+  <b>Schedule Title:</b>
+  <%=h @title.schedule_title %>
 </p>
 
 <p>
-  <b>Danish:</b>
-  <%=h @title.danish %>
-</p>
-
-<p>
-  <b>Swedish:</b>
-  <%=h @title.swedish %>
-</p>
-
-<p>
-  <b>Norwegian:</b>
-  <%=h @title.norwegian %>
-</p>
-
-<p>
-  <b>Hungarian:</b>
-  <%=h @title.hungarian %>
-</p>
-
-<p>
-	<b>EOP:</b>
-	<%= @title.eop_display%>
+  <b>Display Title:</b>
+  <%=h @title.display_title %>
 </p>
 
 <table>
@@ -42,4 +22,5 @@
 </table>
 
 <%= link_to 'Edit', edit_title_path(@title) %> |
-<%= link_to 'Back', titles_path %>
+<%= link_to 'Back', :back %>
+

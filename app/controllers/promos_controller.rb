@@ -25,6 +25,7 @@ class PromosController < ApplicationController
   def new
     @promo = Promo.new_with_default_times
     @titles = Title.all
+    @promo_types = PromoType.all
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @promo }
@@ -35,6 +36,7 @@ class PromosController < ApplicationController
   def edit
     @promo = Promo.find(params[:id])
     @titles = Title.all
+    @promo_types = PromoType.all
   end
 
   # POST /promos

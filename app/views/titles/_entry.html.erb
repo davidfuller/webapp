@@ -1,31 +1,11 @@
-<%= f.hidden_field :source %>
+
 <%= f.hidden_field :channel %>
-<%= f.hidden_field :schedule_comparison_id %>
-<%= f.hidden_field :press_line_id %>
   <p>
-    <%= f.label "Original" %><br />
-    <%= f.text_field :english, :size => 80 %>
+    <%= f.label "Schedule Title" %><br />
+    <%= f.text_field :schedule_title, :size => 80 %>
   </p>
   <p>
-    <%= f.label :danish %><br />
-    <%= f.text_field :danish, :size => 80 %> 
+    <%= f.label "Display Title" %><br />
+    <%= f.text_field :display_title, :size => 80 %> 
   </p>
-  <p>
-    <%= f.label :swedish %><br />
-    <%= f.text_field :swedish, :size => 80 %>
-  </p>
-  <p>
-    <%= f.label :norwegian %><br />
-    <%= f.text_field :norwegian, :size => 80 %>
-  </p>
-  <p>
-    <%= f.label :hungarian %><br />
-    <%= f.text_field :hungarian, :size => 80 %>
-  </p>
-	<p>
-		EOP
-		<%= f.check_box :eop %><br />
-		Tick if the programme has it's own EOPs<br />
-		Leave empty if you wish to have 'Now' straps
-  <p>
 	

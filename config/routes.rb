@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :promo_types
+
   map.resources :dynamic_specials
 
   map.resources :special_fields

@@ -1,0 +1,2 @@
+module PromoTypesHelper
+end

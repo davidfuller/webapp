@@ -1,0 +1,16 @@
+<h1>Editing promo_type</h1>
+
+<% form_for(@promo_type) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :display %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @promo_type %> |
+<%= link_to 'Back', :back %>
