@@ -10,14 +10,11 @@
 				<%= submit_tag "Search", :name => nil %>
 			</p>
 		
-			<%= select_tag :language, options_for_select(@languages.insert(0,"All"), 
-											params[:language]),{:onchange => 'this.form.submit()'} %> | 
 			<%= label_tag :house_no, "Show House/Series Numbers" %>
 			<%= check_box_tag :house_no, value ="1", params[:house_no],{:onchange => 'this.form.submit()'} %><br/>
 			
 		<% end %>
 </fieldset>
-		<% session[:language] = params[:language] %>
 		<% session[:house_no] = params[:house_no] %>
 		
 <p class = 'link_button'>
@@ -29,22 +26,15 @@
 <table>
 
   <tr>
-    <th id = 'lang'>English</th>
-		<% if @danish %><th  id = 'lang'>Danish</th><% end %>
-    <% if @swedish %><th id = 'lang'>Swedish</th><% end %>
-    <% if @norwegian %><th id = 'lang'>Norwegian</th><% end %>
-    <% if @hungarian %><th id = 'lang'>Hungarian</th><% end %>
+    <th id = 'lang'>Schedule Title</th>
+    <th id = 'lang'>Display Title</th>
     <% if @show_house %><th>House/Series No(s)</th><% end %>
-		<th>EOP</th>
   </tr>
 	</div>
 <% @titles.each do |title| %>
   <tr>
-    <td id = 'lang'><%=h title.english %></td>
-    <% if @danish %><td id = 'lang'><%=h title.danish %></td><% end %>
-    <% if @swedish %><td id = 'lang'><%=h title.swedish %></td><% end %>
-    <% if @norwegian %><td id = 'lang'><%=h title.norwegian %></td><% end %>
-    <% if @hungarian %><td id = 'lang'><%=h title.hungarian %></td><% end %>
+    <td id = 'lang'><%=h title.schedule_title %></td>
+    <td id = 'lang'><%=h title.display_title %></td>
 		</div>
 		<% if @show_house %>
 			<td>
@@ -58,7 +48,6 @@
 				</table>
 			</td>
 		<% end %>
-		<td><%= h title.eop_display %></td>
 		<td><%= link_to 'Show', title %>
     <td><%= link_to 'Edit', edit_title_path(title) %></td>
     <td><%= link_to 'Delete', title, :confirm => 'Are you sure?', :method => :delete %></td>

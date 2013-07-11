@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
    CHARSET_FORMAT = "WINDOWS-1252"
 #    CHARSET_FORMAT = "UTF-8"
  
-# Here is some extra text   
+# THIS IS THE SKY VERSION   
   
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password

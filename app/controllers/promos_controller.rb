@@ -25,16 +25,27 @@ class PromosController < ApplicationController
   def new
     @promo = Promo.new_with_default_times
     @titles = Title.all
+    @promo_types = PromoType.all
+    @search_term = search_term(params[:search], @promo)
+    @search_titles = Title.search_unpaged(@search_term)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @promo }
+      format.js { render :action => "update" }
     end
   end
 
   # GET /promos/1/edit
   def edit
-    @promo = Promo.find(params[:id])
+    @promo = Promo.find_with_title_id(params[:id],params[:title_id])
     @titles = Title.all
+    @promo_types = PromoType.all
+    @search_term = search_term(params[:search], @promo)
+    @search_titles = Title.search_unpaged(@search_term)
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.js { render :action => "update" }
+    end
   end
 
   # POST /promos
@@ -49,6 +60,9 @@ class PromosController < ApplicationController
         format.xml  { render :xml => @promo, :status => :created, :location => @promo }
       else
         @titles = Title.all
+        @promo_types = PromoType.all
+        @search_term = search_term(params[:search], @promo)
+        @search_titles = Title.search_unpaged(@search_term)
         format.html { render :action => "new" }
         format.xml  { render :xml => @promo.errors, :status => :unprocessable_entity }
       end
@@ -65,8 +79,12 @@ class PromosController < ApplicationController
         flash[:notice] = 'Promo Media was successfully updated.'
         format.html { redirect_to(promos_path) }
         format.xml  { head :ok }
-      else
+     else
         @titles = Title.all
+        @promo_types = PromoType.all
+        @search_term = search_term(params[:search], @promo)
+        @search_titles = Title.search_unpaged(@search_term)
+
         format.html { render :action => "edit" }
         format.xml  { render :xml => @promo.errors, :status => :unprocessable_entity }
       end
@@ -132,6 +150,7 @@ class PromosController < ApplicationController
     end
   end
   
+  
   protected
   
   def index_html(params)
@@ -146,6 +165,22 @@ class PromosController < ApplicationController
     end
     
   end
+  
+  def search_term(search, promo)
+    if search
+      term = search   
+    elsif promo.nil?
+      term = ''  
+    elsif promo.title
+      if promo.title.schedule_title
+        term = promo.title.schedule_title
+      end
+    else
+      term = ''
+    end
+    term
+  end
+  
   
   
 end

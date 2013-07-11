@@ -28,8 +28,8 @@
 	  <tr>
 	    <td width = '200'><b><%=link_to(h(promo.name), promo) %></b></td>
 	    <td width = '200'><% if promo.title %>
-						<% if promo.name != promo.title.english %>
-							<i>Programme Title: <%=h promo.title.english unless promo.title.nil? %></i>
+						<% if promo.name != promo.title.schedule_title %>
+							<i>Programme Title: <%=h promo.title.schedule_title unless promo.title.nil? %></i>
 						<% end %>
 					<% end %>
 			</td>

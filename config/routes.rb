@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :promo_types
+
   map.resources :dynamic_specials
 
   map.resources :special_fields
@@ -104,7 +106,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
-  map.root :controller => "previews"
+  map.root :controller => "promos"
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.

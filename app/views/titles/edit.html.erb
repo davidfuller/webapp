@@ -9,8 +9,5 @@
   </p>
 <% end %>
 
-<% if @title.source == 'Press' %>
-<%= link_to 'Back', press_lines_with_date(nil, @title.channel)%>
-<% else %>
 <%= link_to 'Back', :back %>
-<% end%>
+
