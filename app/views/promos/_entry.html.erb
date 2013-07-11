@@ -1,42 +1,56 @@
 <%= calendar_date_select_includes "custom", :locale=>'uk' %>
-<p>
+
+<table>
+<tr><td>
   <%= f.label :name %><br />
   <%= f.text_field :name %>
-</p>
-<p>
+</td>
+<td>
   <%= f.label :description %><br />
   <%= f.text_field :description %>
-</p>
-<p>
+</td>
+</tr>
+
+<tr><td>
   <%= f.label :title_id %><br />
-  <%= f.collection_select (:title_id, @titles, :id, :schedule_title, :prompt => 'Select a title')   %>
-</p>
-<p>
+  <%= f.collection_select (:title_id, @titles, :id, :schedule_title, :prompt => 'Select a title', :class => 'title_id')   %>
+  <%= link_to_function 'Toggle Title Search' do |page|
+  	page['search_title'].toggle()
+  end %>
+</td></tr>
+<tr><td>
   <%= f.label "Promo Type" %><br />
   <%= f.collection_select (:promo_type_id, @promo_types, :id, :name, :prompt => 'Select a promo type')   %>
-</p>
-
-<p>
+</td></tr>
+<tr><td>
   <%= f.label :first_use %><br />
 	<%= f.calendar_date_select :first_use, {:month_year => :label, :minute_interval => 1} %>
-</p>
-<p>
+</td>
+<td>
   <%= f.label :last_use %><br />
 	<%= f.calendar_date_select :last_use,  {:month_year => :label, :minute_interval => 1} %>
-</p>
-<p>
-  <%= f.label 'Season Start (Leave blank for Totally Generic)' %><br />
-  <%= f.text_field :season_start %>
-</p>
-<p>
-  <%= f.label 'Season End (leave blank for Totally Generic or only one season)' %><br />
-  <%= f.text_field :season_end %>
-</p>
-<p>
-  <%= f.label 'Episode Start (Leave blank for Totally Generic. For multi season this is the first episode in Season Start)' %><br />
+</td></tr>
+<tr><td>
+  <p>
+    <%= f.label 'Season Start (Leave blank for Totally Generic)' %><br />
+    <%= f.text_field :season_start %>
+  </p>
+</td>
+<td>
+  <p>
+    <%= f.label 'Season End (leave blank for Totally Generic or only one season)' %><br />
+    <%= f.text_field :season_end %><br />
+  </p>
+
+</td></tr>
+<tr><td>
+  <%= f.label 'Episode Start (Leave blank for Totally Generic.'%><br />
+  For multi season this is the first episode in Season Start) <br />
   <%= f.text_field :episode_start %>
-</p>
-<p>
-  <%= f.label 'Season End (Leave blank for Totally Generic. For multi season this is the last episode in Season End)' %><br />
+</td>
+<td>
+  <%= f.label 'Season End (Leave blank for Totally Generic.' %><br />
+  For multi season this is the last episode in Season End)<br />
   <%= f.text_field :episode_end %>
-</p>
+</td></tr>
+</table>

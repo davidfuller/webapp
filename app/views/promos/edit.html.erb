@@ -11,4 +11,25 @@
 <% end %>
 
 <%= link_to 'Show', @promo %> |
-<%= link_to 'Back', promos_path %>
+<%= link_to 'Back', promos_path %> <br />
+<%= link_to_function 'Toggle Title Search' do |page|
+  	page['search_title'].toggle()
+  end %>
+  
+<% if params[:search].nil? %>
+	<div id ='search_title' , style = "display: none;" >
+<% else %>
+	<div id ='search_title'>
+<% end %>
+
+<h1>Programme Titles</h1>
+<% form_remote_tag do %>
+    <p>
+      <%= text_field_tag :search, @search_term, :size => 45 %>
+	    <%= submit_tag "Search", :name => nil %>
+    </p>
+<% end %>
+
+<%= render :partial => 'shared/titles' %>
+</div>
+

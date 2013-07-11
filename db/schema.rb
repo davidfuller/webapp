@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507162338) do
+ActiveRecord::Schema.define(:version => 20130618133933) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -252,6 +252,12 @@ ActiveRecord::Schema.define(:version => 20130507162338) do
     t.datetime "updated_at"
   end
 
+  create_table "promo_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "promos", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -260,6 +266,11 @@ ActiveRecord::Schema.define(:version => 20130507162338) do
     t.datetime "last_use"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "promo_type_id"
+    t.string   "season_start"
+    t.string   "season_end"
+    t.string   "episode_start"
+    t.string   "episode_end"
   end
 
   create_table "schedule_comparisons", :force => true do |t|
@@ -341,14 +352,10 @@ ActiveRecord::Schema.define(:version => 20130507162338) do
   end
 
   create_table "titles", :force => true do |t|
-    t.string   "english"
-    t.string   "danish"
-    t.string   "swedish"
-    t.string   "norwegian"
-    t.string   "hungarian"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "eop"
+    t.string   "schedule_title"
+    t.string   "display_title"
   end
 
   create_table "upload_playlist_files", :force => true do |t|

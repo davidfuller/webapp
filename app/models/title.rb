@@ -19,6 +19,14 @@ class Title < ActiveRecord::Base
     else
       paginate  :per_page => 12, :page =>page
     end
-  end 
+  end
+  
+  def self.search_unpaged(search)
+    if search
+      find :all, :conditions => ['schedule_title LIKE ?', "%#{search}%"]
+    else
+      all
+    end
+  end
       
 end
