@@ -1,0 +1,20 @@
+<div id = 'titles'>
+<table>
+
+  <tr>
+    <th id = 'lang'>Schedule Title</th>
+    <th id = 'lang'>Display Title</th>
+  </tr>
+	</div>
+<% @search_titles.each do |title| %>
+  <tr>
+    <td id = 'lang'><%=h title.schedule_title %></td>
+    <td id = 'lang'><%=h title.display_title %></td>
+		</div>
+		<td><%= link_to_function "Use this title" do |page|
+			          page['promo_title_id'].value = title.id
+  			    end %></td>
+  </tr>
+<% end %>
+</table>  
+</div>

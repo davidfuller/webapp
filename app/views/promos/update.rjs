@@ -1,0 +1,1 @@
+page.replace_html(:titles, :partial => 'shared/titles')
