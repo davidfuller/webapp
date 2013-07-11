@@ -2,7 +2,7 @@
 
 development:
     adapter: mysql
-    database: sky
+    database: aetn
     username: root
     password: root
     host: localhost
