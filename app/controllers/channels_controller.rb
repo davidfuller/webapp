@@ -25,8 +25,6 @@ class ChannelsController < ApplicationController
   # GET /channels/new.xml
   def new
     @channel = Channel.new
-    @languages = Language.all
-    @encodings = Channel.encodings
     
     respond_to do |format|
       format.html # new.html.erb
@@ -37,16 +35,13 @@ class ChannelsController < ApplicationController
   # GET /channels/1/edit
   def edit
     @channel = Channel.find(params[:id])
-    @languages = Language.all
-    @encodings = Channel.encodings
+    
   end
 
   # POST /channels
   # POST /channels.xml
   def create
     @channel = Channel.new(params[:channel])
-    @languages = Language.all
-    @encodings = Channel.encodings
         
     respond_to do |format|
       if @channel.save
@@ -64,8 +59,6 @@ class ChannelsController < ApplicationController
   # PUT /channels/1.xml
   def update
     @channel = Channel.find(params[:id])
-    @languages = Language.all
-    @encodings = Channel.encodings
     
     respond_to do |format|
       if @channel.update_attributes(params[:channel])

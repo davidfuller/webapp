@@ -23,11 +23,8 @@ class PromosController < ApplicationController
   # GET /promos/new
   # GET /promos/new.xml
   def new
-    @promo = Promo.new_with_default_times
-    @titles = Title.all
-    @promo_types = PromoType.all
-    @search_term = search_term(params[:search], @promo)
-    @search_titles = Title.search_unpaged(@search_term)
+    @promo = Promo.new
+    @channels = Channel.all
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @promo }
@@ -37,11 +34,8 @@ class PromosController < ApplicationController
 
   # GET /promos/1/edit
   def edit
-    @promo = Promo.find_with_title_id(params[:id],params[:title_id])
-    @titles = Title.all
-    @promo_types = PromoType.all
-    @search_term = search_term(params[:search], @promo)
-    @search_titles = Title.search_unpaged(@search_term)
+    @promo = Promo.find(params[:id])
+    @channels = Channel.all
     respond_to do |format|
       format.html # edit.html.erb
       format.js { render :action => "update" }
@@ -59,10 +53,7 @@ class PromosController < ApplicationController
         format.html { redirect_to(promos_path) }
         format.xml  { render :xml => @promo, :status => :created, :location => @promo }
       else
-        @titles = Title.all
-        @promo_types = PromoType.all
-        @search_term = search_term(params[:search], @promo)
-        @search_titles = Title.search_unpaged(@search_term)
+        @channels = Channel.all
         format.html { render :action => "new" }
         format.xml  { render :xml => @promo.errors, :status => :unprocessable_entity }
       end
@@ -80,11 +71,7 @@ class PromosController < ApplicationController
         format.html { redirect_to(promos_path) }
         format.xml  { head :ok }
      else
-        @titles = Title.all
-        @promo_types = PromoType.all
-        @search_term = search_term(params[:search], @promo)
-        @search_titles = Title.search_unpaged(@search_term)
-
+        @channels = Channel.all
         format.html { render :action => "edit" }
         format.xml  { render :xml => @promo.errors, :status => :unprocessable_entity }
       end

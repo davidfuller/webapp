@@ -1,0 +1,45 @@
+<%= calendar_date_select_includes "custom", :locale=>'uk' %>
+  <p>
+    <%= f.label :promo_id %><br />
+    <%= f.collection_select (:promo_id, @promos, :id, :name, :prompt => 'Select promo')   %>
+  </p>
+  <p>
+    <%= f.label 'Version' %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :note %><br />
+    <%= f.text_field :note %>
+  </p>
+  <p>
+    <%= f.label :producer_id %><br />
+    <%= f.collection_select (:producer_id, @producers, :id, :name, :prompt => 'Select producer')   %>
+  </p>
+  <p>
+    <%= f.label :prog_first_tx %><br />
+    <%= f.calendar_date_select :prog_first_tx, {:month_year => :label, :minute_interval => 1} %>
+  </p>
+  <p>
+   <%= f.label :first_use %><br />
+   <%= f.calendar_date_select :first_use, {:month_year => :label, :minute_interval => 1} %>
+  </p>
+  <p>
+   <%= f.label :last_use %><br />
+   <%= f.calendar_date_select :last_use, {:month_year => :label, :minute_interval => 1} %>  </p>
+  <p>
+    <%= f.label :tx_info %><br />
+    <%= f.text_field :tx_info %>
+  </p>
+  
+  <p>
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration %>
+  </p>
+  <p>
+    <%= f.label :sponsor %><br />
+    <%= f.text_field :sponsor %>
+  </p>
+  <p>
+    <%= f.label :uk_premiere %><br />
+    <%= f.check_box :uk_premiere %>
+  </p>

@@ -1,0 +1,16 @@
+<h1>Editing producer</h1>
+
+<% form_for(@producer) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @producer %> |
+<%= link_to 'Back', producers_path %>

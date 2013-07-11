@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618133933) do
+ActiveRecord::Schema.define(:version => 20130711173724) do
 
   create_table "aspects", :force => true do |t|
     t.string   "name"
@@ -29,20 +29,9 @@ ActiveRecord::Schema.define(:version => 20130618133933) do
 
   create_table "channels", :force => true do |t|
     t.string   "name"
-    t.string   "press_code"
-    t.string   "playlist_code"
-    t.integer  "language_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "domain"
-    t.string   "path"
-    t.string   "bss_name"
-    t.boolean  "hd"
-    t.string   "prefix"
-    t.string   "logo_filename"
-    t.boolean  "circle_logo"
-    t.string   "encoding"
-    t.boolean  "has_dynamic_branding"
+    t.string   "code"
   end
 
   create_table "commons", :force => true do |t|
@@ -252,6 +241,12 @@ ActiveRecord::Schema.define(:version => 20130618133933) do
     t.datetime "updated_at"
   end
 
+  create_table "producers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "promo_types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -261,16 +256,12 @@ ActiveRecord::Schema.define(:version => 20130618133933) do
   create_table "promos", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "title_id"
     t.datetime "first_use"
     t.datetime "last_use"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "promo_type_id"
-    t.string   "season_start"
-    t.string   "season_end"
-    t.string   "episode_start"
-    t.string   "episode_end"
+    t.integer  "channel_id"
+    t.string   "priority"
   end
 
   create_table "schedule_comparisons", :force => true do |t|
@@ -359,6 +350,22 @@ ActiveRecord::Schema.define(:version => 20130618133933) do
   end
 
   create_table "upload_playlist_files", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "versions", :force => true do |t|
+    t.string   "note"
+    t.date     "prog_first_tx"
+    t.date     "first_use"
+    t.date     "last_use"
+    t.string   "tx_info"
+    t.string   "name"
+    t.integer  "duration"
+    t.string   "sponsor"
+    t.boolean  "uk_premiere"
+    t.integer  "promo_id"
+    t.integer  "producer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

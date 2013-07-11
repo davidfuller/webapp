@@ -1,0 +1,20 @@
+<h1>Listing producers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @producers.each do |producer| %>
+  <tr>
+    <td><%=h producer.name %></td>
+    <td><%= link_to 'Show', producer %></td>
+    <td><%= link_to 'Edit', edit_producer_path(producer) %></td>
+    <td><%= link_to 'Destroy', producer, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New producer', new_producer_path %>

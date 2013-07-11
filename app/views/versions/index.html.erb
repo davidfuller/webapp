@@ -1,0 +1,41 @@
+<h1>Versions</h1>
+
+<table>
+  <tr>
+    <th>Promo</th>
+    <th>Version</th>
+    <th>Note</th>
+    <th>Producer</th>
+    <th>Prog first tx</th>
+    <th>First use</th>
+    <th>Last use</th>
+    <th>TX info</th>
+    <th>Duration</th>
+    <th>Sponsor</th>
+    <th>UK premiere</th>
+  </tr>
+
+<% @versions.each do |version| %>
+  <tr>
+    <td><%=h version.promo.name unless version.promo.nil? %></td>
+    <td><%=h version.name %></td>
+    <td><%=h version.note %></td>
+    <td><%=h version.producer.name unless version.producer.nil? %></td>
+    <td><%=h version.prog_first_tx %></td>
+    <td><%=h version.first_use %></td>
+    <td><%=h version.last_use %></td>
+    <td><%=h version.tx_info %></td>
+    <td><%=h version.duration %></td>
+    <td><%=h version.sponsor %></td>
+    <td><%=h version.uk_premiere %></td>
+    
+    <td><%= link_to 'Show', version %></td>
+    <td><%= link_to 'Edit', edit_version_path(version) %></td>
+    <td><%= link_to 'Destroy', version, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New version', new_version_path %>

@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  note: MyString
+  prog_first_tx: 2013-07-11
+  first_use: 2013-07-11
+  last_use: 2013-07-11
+  tx_info: MyString
+  name: MyString
+  duration: 1
+  sponsor: MyString
+  uk_premiere: false
+  promo_id: 1
+  producer_id: 1
+
+two:
+  note: MyString
+  prog_first_tx: 2013-07-11
+  first_use: 2013-07-11
+  last_use: 2013-07-11
+  tx_info: MyString
+  name: MyString
+  duration: 1
+  sponsor: MyString
+  uk_premiere: false
+  promo_id: 1
+  producer_id: 1

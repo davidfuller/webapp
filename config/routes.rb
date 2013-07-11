@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :versions
+
+  map.resources :producers
+
   map.resources :promo_types
 
   map.resources :dynamic_specials
